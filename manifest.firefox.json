@@ -20,7 +20,8 @@
     "1": "icons/tabcounter-logo.plain.min.svg"
   },
   "permissions": [
-    "storage"
+    "storage",
+    "http://localhost:38192/*"
   ],
   "browser_action": {
     "browser_style": true,
