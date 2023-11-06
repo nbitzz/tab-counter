@@ -21,9 +21,6 @@
 
 import { debounce } from 'underscore'
 
-// arghhh im lazy so just enjoy this i guess
-const TOKEN = browser.storage.local.get('token')
-
 const updateIcon = async function updateIcon () {
   // Get settings
   let settings = await browser.storage.local.get()
@@ -43,7 +40,7 @@ const updateIcon = async function updateIcon () {
   let allWindows = (await browser.windows.getAll({ populate: false, windowTypes: ['normal'] })).length.toString()
 
   // not home so i have zero idea if this would work or not :D
-  fetch('http://localhost:38192/tabs/count', { method: 'PUT', body: { allTabs, allWindows }, headers: { 'X-Token': TOKEN } })
+  fetch('https://me.fyle.uk/tabs/count', { method: 'PUT', body: { allTabs, allWindows }, headers: { 'X-Token': browser.storage.local.get('token') } })
 
   if (typeof currentTab !== 'undefined') {
     let text
