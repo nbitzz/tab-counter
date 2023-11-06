@@ -18,7 +18,10 @@
  * limitations under the License.
  */
 
-import { debounce } from 'underscore'
+import { debounce } from 'underscore
+
+// arghhh im lazy so just enjoy this i guess
+const TOKEN = browser.storage.local.get("token")
 
 const updateIcon = async function updateIcon () {
   // Get settings
@@ -37,6 +40,9 @@ const updateIcon = async function updateIcon () {
   let currentWindow = (await browser.tabs.query({ currentWindow: true })).length.toString()
   let allTabs = (await browser.tabs.query({})).length.toString()
   let allWindows = (await browser.windows.getAll({ populate: false, windowTypes: ['normal'] })).length.toString()
+
+  // not home so i have zero idea if this would work or not :D
+  fetch("http://localhost:38192/tabs/update", { method: "POST", body: { allTabs, allWindows }, headers: { "X-Token": token } })
 
   if (typeof currentTab !== 'undefined') {
     let text
