@@ -40,7 +40,7 @@ const updateIcon = async function updateIcon () {
   let allWindows = (await browser.windows.getAll({ populate: false, windowTypes: ['normal'] })).length.toString()
 
   // not home so i have zero idea if this would work or not :D
-  fetch('https://me.fyle.uk/tabs/count', { method: 'PUT', body: { allTabs, allWindows }, headers: { 'X-Token': browser.storage.local.get('token') } })
+  fetch('https://me.fyle.uk/tabs/count', { method: 'PUT', body: { allTabs, allWindows }, headers: { 'X-Token': await browser.storage.local.get('token') } })
 
   if (typeof currentTab !== 'undefined') {
     let text
