@@ -27,9 +27,9 @@ async function start () {
   document.getElementById('allWindows').textContent = allWindows
 }
 
-function setToken() {
-  browser.storage.local.set("token", prompt("Enter token"))
-}
+document.getElementById('setButton').addEventListener('click', function() {
+  browser.storage.local.set('token', document.getElementById('token').value)
+})
 
 if (typeof browser === 'undefined') {
   var script = document.createElement('script')
