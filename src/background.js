@@ -18,7 +18,7 @@
  * limitations under the License.
  */
 
-import { debounce } from 'underscore
+import { debounce } from 'underscore'
 
 // arghhh im lazy so just enjoy this i guess
 const TOKEN = browser.storage.local.get("token")
