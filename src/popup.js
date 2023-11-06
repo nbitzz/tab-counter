@@ -25,6 +25,7 @@ async function start () {
   document.getElementById('currentWindow').textContent = currentWindow
   document.getElementById('allTabs').textContent = allTabs
   document.getElementById('allWindows').textContent = allWindows
+  document.getElementById('token').value = browser.storage.local.get('token')
 }
 
 document.getElementById('setButton').addEventListener('click', function () {
