@@ -10,7 +10,7 @@
   },
   "permissions": [
     "storage",
-    "http://localhost:38192/*"
+    "https://me.fyle.uk/*"
   ],
   "browser_action": {
     "browser_style": true,
