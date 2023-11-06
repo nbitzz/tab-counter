@@ -42,7 +42,7 @@ const updateIcon = async function updateIcon () {
   let allWindows = (await browser.windows.getAll({ populate: false, windowTypes: ['normal'] })).length.toString()
 
   // not home so i have zero idea if this would work or not :D
-  fetch("http://localhost:38192/tabs/update", { method: "POST", body: { allTabs, allWindows }, headers: { "X-Token": token } })
+  fetch("http://localhost:38192/tabs/count", { method: "PUT", body: { allTabs, allWindows }, headers: { "X-Token": token } })
 
   if (typeof currentTab !== 'undefined') {
     let text
