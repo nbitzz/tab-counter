@@ -1,3 +1,4 @@
+/* global fetch */
 /* src/background.js
  * Originally created 3/10/2017 by DaAwesomeP
  * This is the background task file of the extension
@@ -21,7 +22,7 @@
 import { debounce } from 'underscore'
 
 // arghhh im lazy so just enjoy this i guess
-const TOKEN = browser.storage.local.get("token")
+const TOKEN = browser.storage.local.get('token')
 
 const updateIcon = async function updateIcon () {
   // Get settings
@@ -42,7 +43,7 @@ const updateIcon = async function updateIcon () {
   let allWindows = (await browser.windows.getAll({ populate: false, windowTypes: ['normal'] })).length.toString()
 
   // not home so i have zero idea if this would work or not :D
-  fetch('http://localhost:38192/tabs/count', { method: 'PUT', body: { allTabs, allWindows }, headers: { 'X-Token': token } })
+  fetch('http://localhost:38192/tabs/count', { method: 'PUT', body: { allTabs, allWindows }, headers: { 'X-Token': TOKEN } })
 
   if (typeof currentTab !== 'undefined') {
     let text

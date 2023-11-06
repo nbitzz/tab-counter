@@ -27,7 +27,7 @@ async function start () {
   document.getElementById('allWindows').textContent = allWindows
 }
 
-document.getElementById('setButton').addEventListener('click', function() {
+document.getElementById('setButton').addEventListener('click', function () {
   browser.storage.local.set('token', document.getElementById('token').value)
 })
 
