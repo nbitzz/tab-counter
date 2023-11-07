@@ -29,7 +29,7 @@ async function start () {
 }
 
 document.getElementById('setButton').addEventListener('click', function () {
-  browser.storage.local.set({'token': document.getElementById('token').value})
+  browser.storage.local.set({ 'token': document.getElementById('token').value })
 })
 
 if (typeof browser === 'undefined') {
