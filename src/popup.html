@@ -57,19 +57,20 @@
 
       h1 {
           color: var(--text);
-          font-size: 50px;
+          font-size: 40px;
       }
 
       p {
-          color: var(--subtext)
+          color: var(--subtext);
+          font-size: 18px; 
       }
     </style>
   </head>
   <body>
     <div>
-      <h1><span id="allTabs"></span></h1>
-      <p>tabs across <span id="allWindows"></span> windows</p>
-      <p><span id="currentWindow"></span> in this window</p>
+      <h1><slot id="allTabs">?</slot></h1>
+      <p>tabs across <slot id="allWindows">?</slot> windows</p>
+      <p><slot id="currentWindow">?</slot> in this window</p>
     </div>
     <script type="text/javascript" src="popup.js"></script>
   </body>
