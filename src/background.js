@@ -110,7 +110,8 @@ const checkSettings = async function checkSettings (settingsUpdate) {
       version: '0.0.0',
       icon: 'tabcounter.plain.min.svg',
       counter: 0,
-      badgeColor: '#999999'
+      badgeColor: '#999999',
+      token: ''
     }
   }
 

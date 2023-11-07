@@ -25,12 +25,7 @@ async function start () {
   document.getElementById('currentWindow').textContent = currentWindow
   document.getElementById('allTabs').textContent = allTabs
   document.getElementById('allWindows').textContent = allWindows
-  document.getElementById('token').value = (await browser.storage.local.get('token')).token
 }
-
-document.getElementById('setButton').addEventListener('click', function () {
-  browser.storage.local.set({ 'token': document.getElementById('token').value })
-})
 
 if (typeof browser === 'undefined') {
   var script = document.createElement('script')
