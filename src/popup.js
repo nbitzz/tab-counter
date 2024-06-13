@@ -25,6 +25,12 @@ async function start () {
   document.getElementById('currentWindow').textContent = currentWindow
   document.getElementById('allTabs').textContent = allTabs
   document.getElementById('allWindows').textContent = allWindows
+  /*console.log(shares)
+
+  document.getElementById('connectivity').textContent = shares.connection.readyState == 1 ? "connected" : "disconnected"
+  document.getElementById('allDevicesTabs').textContent = shares.state ? shares.state.map(e => e.allTabs).reduce((acc,cur) => cur+acc,0) : "?"
+  document.getElementById('allDevicesWindows').textContent = shares.state ? shares.state.map(e => e.allWindows).reduce((acc,cur) => cur+acc,0) : "?"
+  document.getElementById('deviceCount').textContent = shares.state ? shares.state.length : "?"*/
 }
 
 if (typeof browser === 'undefined') {

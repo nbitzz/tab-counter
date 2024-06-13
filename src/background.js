@@ -21,22 +21,22 @@
 
 import { debounce } from 'underscore'
 
-let connection
-let connecting = false
+let tryingReconnect = false
 let survived30sTO = null
+let connection
 
 async function tryReconnect () {
-  if (connecting) return
-  connecting = true
+  if (tryingReconnect) return
+  tryingReconnect = true
   setTimeout(() => {
-    connecting = false
-    connect()
+    tryingReconnect = false
     survived30sTO = setTimeout(() => { survived30sTO = null }, 30000)
+    connect()
   }, survived30sTO ? 0 : 30000)
 }
 
 async function connect () {
-  connection = new WebSocket('wss://tabs.split.pet/count')
+  connection = new WebSocket('ws://localhost:3000/count')
   connection.addEventListener('close', tryReconnect)
   connection.addEventListener('error', tryReconnect)
   connection.addEventListener('open', async _ => {
@@ -75,7 +75,7 @@ const updateIcon = async function updateIcon () {
     else if (counterPreference === 1) text = allTabs // Badge shows total of all windows
     else if (counterPreference === 2) text = `${currentWindow}/${allTabs}` // Badge shows both (Firefox limits to about 4 characters based on width)
     else if (counterPreference === 4) text = allWindows // Badge shows total of all windows
-
+    
     // Update the badge
     browser.browserAction.setBadgeText({
       text: text,
