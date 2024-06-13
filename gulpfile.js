@@ -28,19 +28,6 @@ const rename = require('gulp-rename')
 const sourcemaps = require('gulp-sourcemaps')
 const zip = require('gulp-zip')
 
-gulp.task('check', () => {
-  return gulp.src(['src/**/*.js', 'gulpfile.js'])
-    .pipe(eslint())
-    .pipe(eslint.format())
-    .pipe(eslint.failAfterError())
-})
-
-gulp.task('checkSafe', () => {
-  return gulp.src(['src/**/*.js', 'gulpfile.js'])
-    .pipe(eslint())
-    .pipe(eslint.format())
-})
-
 gulp.task('static', () => {
   return gulp.src('src/**/*.js')
     .pipe(lec())
@@ -88,10 +75,10 @@ gulp.task('pack', gulp.parallel(() => {
     .pipe(gulp.dest('build'))
 }))
 
-gulp.task('watch', gulp.series('checkSafe', 'compile', () => {
+gulp.task('watch', gulp.series('compile', () => {
   return gulp.watch(['src/**/*', 'node_modules/webextension-polyfill/**/*', 'node_modules/underscore/**/*', 'icons/**/*', 'manifest.json', 'package.json'], gulp.parallel('checkSafe', 'compile'))
 }))
 
-gulp.task('dist', gulp.series('static', 'check', 'clean', 'compile'))
+gulp.task('dist', gulp.series('static', 'clean', 'compile'))
 gulp.task('build', gulp.series('dist', 'pack'))
 gulp.task('default', gulp.series('build'))

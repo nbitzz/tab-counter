@@ -1,7 +1,7 @@
 {
   "name": "Tab Counter",
   "short_name": "Tab Counter",
-  "version": "0.4.7",
+  "version": "0.4.8",
   "description": "A button badge that shows the number of tabs open in a window",
   "homepage_url": "https://github.com/nbitzz/tab-counter",
   "manifest_version": 2,
@@ -10,7 +10,7 @@
   },
   "permissions": [
     "storage",
-    "https://me.fyle.uk/*"
+    "https://tabs.split.pet/*"
   ],
   "browser_action": {
     "browser_style": true,

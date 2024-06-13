@@ -1,4 +1,4 @@
-/* global fetch */
+
 /* src/background.js
  * Originally created 3/10/2017 by DaAwesomeP
  * This is the background task file of the extension
@@ -21,6 +21,31 @@
 
 import { debounce } from 'underscore'
 
+let connection
+let connecting = false
+let survived30sTO = null
+
+async function tryReconnect () {
+  if (connecting) return
+  connecting = true
+  setTimeout(() => {
+    connecting = false
+    connect()
+    survived30sTO = setTimeout(() => { survived30sTO = null }, 30000)
+  }, survived30sTO ? 0 : 30000)
+}
+
+async function connect () {
+  connection = new WebSocket('wss://tabs.split.pet/count')
+  connection.addEventListener('close', tryReconnect)
+  connection.addEventListener('error', tryReconnect)
+  connection.addEventListener('open', async _ => {
+    connection.send((await browser.storage.local.get('token')).token)
+  })
+}
+
+connect()
+
 const updateIcon = async function updateIcon () {
   // Get settings
   let settings = await browser.storage.local.get()
@@ -39,8 +64,10 @@ const updateIcon = async function updateIcon () {
   let allTabs = (await browser.tabs.query({})).length.toString()
   let allWindows = (await browser.windows.getAll({ populate: false, windowTypes: ['normal'] })).length.toString()
 
-  // not home so i have zero idea if this would work or not :D
-  fetch('https://me.fyle.uk/tabs/count', { method: 'PUT', body: JSON.stringify({ allTabs, allWindows }), headers: { 'Content-Type': 'application/json', 'X-Token': (await browser.storage.local.get('token')).token } })
+  // update tabs.split.pet
+  if (connection && connection.readyState) {
+    connection.send(JSON.stringify({ allTabs, allWindows }))
+  }
 
   if (typeof currentTab !== 'undefined') {
     let text
