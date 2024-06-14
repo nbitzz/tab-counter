@@ -36,7 +36,7 @@ async function tryReconnect () {
 }
 
 async function connect () {
-  connection = new WebSocket('ws://localhost:3000/count')
+  connection = new WebSocket('wss://tabs.split.pet/count')
   connection.addEventListener('close', tryReconnect)
   connection.addEventListener('error', tryReconnect)
   connection.addEventListener('open', async _ => {
