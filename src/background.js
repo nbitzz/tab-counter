@@ -32,7 +32,7 @@ async function tryReconnect () {
     tryingReconnect = false
     survived30sTO = setTimeout(() => { survived30sTO = null }, 30000)
     connect()
-  }, survived30sTO ? 0 : 30000)
+  }, survived30sTO ? 30000 : 0)
 }
 
 async function connect () {
